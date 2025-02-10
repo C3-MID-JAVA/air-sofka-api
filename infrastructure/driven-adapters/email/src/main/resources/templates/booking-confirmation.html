@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Airfare Booking Confirmation</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .header, .section-header {
+            background-color: #0056b3;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .key-notes {
+            background-color: #e1f0ff;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .key-notes-header {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div style="text-align: center; margin-bottom: 20px;">
+        <img src="https://i.imgur.com/rNVyT4D.png" alt="Company Logo" width="280"  height="250" style="border-radius:50px;">
+    </div>
+    <h1 th:text="${confirmationTitle}">Booking Confirmation</h1>
+
+    <div class="header">Flight Booking Confirmation</div>
+    <table>
+        <tr>
+            <th>Booking Date</th>
+            <td th:text="${bookingDate}">Sunday, December 10, 2023</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td><a th:href="'mailto:' + ${email}" th:text="${email}">james@emailservice.com</a></td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td th:text="${phoneNumber}">+1345 6789012</td>
+        </tr>
+        <tr>
+            <th>Passenger</th>
+            <td th:text="${passengerName}">Mr. James Thompson</td>
+        </tr>
+    </table>
+
+    <div class="section-header">Flight Details</div>
+    <table>
+        <tr>
+            <th>From</th>
+            <td th:text="${departureCity}">Los Angeles</td>
+            <th>To</th>
+            <td th:text="${arrivalCity}">Paris</td>
+        </tr>
+        <tr>
+            <th>Airline</th>
+            <td th:text="${airline}">SkyHigh</td>
+            <th>Flight No.</th>
+            <td th:text="${flightNumber}">SH1234</td>
+        </tr>
+        <tr>
+            <th>Departure Date</th>
+            <td th:text="${departureDate}">Thursday, December 27, 2023 07:15</td>
+            <th>Arrival Date</th>
+            <td th:text="${arrivalDate}">Sunday, December 30, 2023 10:15</td>
+        </tr>
+    </table>
+
+    <div class="section-header">Seating Information</div>
+    <table>
+        <tr>
+            <th>Class</th>
+            <th style="text-align: right;">Passenger</th>
+        </tr>
+        <tr th:each="seat : ${seats}">
+            <td th:text="${seat.flightClass}">Premium Economy</td>
+            <td style="text-align: right;" th:text="${seat.passengerName}">John Doe</td>
+        </tr>
+    </table>
+
+    <div class="section-header">Cost Summary</div>
+    <table>
+        <tr>
+            <th>Charge</th>
+            <th  style="text-align: right;">Amount</th>
+        </tr>
+        <tr>
+            <td>Ticket Price</td>
+            <td style="text-align: right;" th:text="${ticketPrice}">$150</td>
+        </tr>
+        <tr>
+            <td>Airport Tax</td>
+            <td style="text-align: right;" th:text="${airportTax}">$10</td>
+        </tr>
+        <tr>
+            <td>Additional Charges</td>
+            <td style="text-align: right;" th:text="${additionalCharges}">$65</td>
+        </tr>
+        <tr>
+            <td>Fuel & Insurance</td>
+            <td style="text-align: right;" th:text="${fuelInsurance}">$25</td>
+        </tr>
+        <tr>
+            <td>Booking Fee</td>
+            <td style="text-align: right;" th:text="${bookingFee}">$5</td>
+        </tr>
+        <tr style="font-weight: bold;">
+            <td>Total Amount</td>
+            <td style="text-align: right;" th:text="${totalAmount}">$255</td>
+        </tr>
+    </table>
+
+    <section class="key-notes">
+        <div class="key-notes-header">Key Notes</div>
+        <p th:text="${keyNotes}">
+            Please bring this confirmation, along with a government-issued photo ID, upon check-in.
+        </p>
+    </section>
+
+</div>
+</body>
+
+</html>

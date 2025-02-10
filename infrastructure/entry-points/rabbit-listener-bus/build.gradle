@@ -1,0 +1,10 @@
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation project(':model')
+    implementation project(':shared')
+    implementation project(':usecases')
+    implementation project(':email')
+    implementation project(':app-config')
+
+}
